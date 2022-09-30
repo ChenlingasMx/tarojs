@@ -31,7 +31,7 @@
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "precommit": "npm run lint",
     "lint-staged": "lint-staged",
-    "prepare": "husky install tarojs/.husky"
+    "prepare": "husky install"
   },
   "browserslist": [
     "last 3 versions",
