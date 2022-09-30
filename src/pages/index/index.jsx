@@ -16,7 +16,7 @@ const Index = () => {
     <View className="index">
       <Input label="文本" placeholder="文本" defaultValue={state.text} />
       <Button type="primary" className="btn">
-        主要按钮
+        主要按钮111111111
       </Button>
     </View>
   );
