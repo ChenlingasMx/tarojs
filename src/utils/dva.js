@@ -1,31 +1,31 @@
-import { create } from 'dva-core'
-import createLoading from 'dva-loading'
+import { create } from 'dva-core';
+import createLoading from 'dva-loading';
 
-let app,store,dispatch;
+let app, store, dispatch;
 
-function createApp (opt) {
+function createApp(opt) {
   // redux日志
   // opt.onAction = [createLogger()];
-  app = create(opt)
-  app.use(createLoading({}))
+  app = create(opt);
+  app.use(createLoading({}));
 
-  if (!global.registered) opt.models.forEach(model => app.model(model))
-  global.registered = true
-  app.start()
+  if (!global.registered) opt.models.forEach((model) => app.model(model));
+  global.registered = true;
+  app.start();
 
-  store = app._store
-  app.getStore = () => store
+  store = app._store;
+  app.getStore = () => store;
 
-  dispatch = store.dispatch
+  dispatch = store.dispatch;
 
-  app.dispatch = dispatch
-  return app
+  app.dispatch = dispatch;
+  return app;
 }
 
 export default {
   createApp,
-  getDispatch () {
-    return app.dispatch
+  getDispatch() {
+    return app.dispatch;
   },
-  getState: () => store.getState()
-}
+  getState: () => store.getState(),
+};
