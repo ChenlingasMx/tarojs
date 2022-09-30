@@ -7,7 +7,6 @@
     "commonjs": true
   },
   "rules": {
-    "no-amd":"require",
     "no-irregular-whitespace": 0,
     "no-trailing-spaces": 0,
     "no-unused-vars": [
