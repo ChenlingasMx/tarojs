@@ -14,7 +14,7 @@ const HTTP_STATUS = {
   GATEWAY_TIMEOUT: 504,
 };
 
-const token = '';
+const token = Taro.getStorageSync('token');
 
 // 获取api地址
 const _getHostType = () => {
@@ -26,16 +26,17 @@ const _getHostType = () => {
 };
 
 export default {
-  baseOptions(params, method = 'GET') {
+  baseOptions(params, method = 'GET', headers) {
     let { url, data } = params;
-    // let token = getApp().globalData.token
-    // if (!token) { return }
+    if (!token) {
+      Taro.clearStorage();
+      Taro.navigateTo({ url: '/pages/OnLand/index' });
+    }
     let header = {
       Accept: 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded',
-      //'Content-Type': 'application/json',
-      token: token,
-      ...(params.contentType && params.contentType),
+      'content-type': 'application/json', // 默认值
+      userToken: token,
+      ...headers,
     };
     let hosts;
     let base;
