@@ -1,19 +1,20 @@
 import React from 'react';
-import { View, Text } from '@tarojs/components';
-import { Button } from '@nutui/nutui-react-taro';
-import { useSelector } from 'react-redux';
+import Taro from '@tarojs/taro';
+import { View, Image } from '@tarojs/components';
+import log from '@/assets/images/favicon.png';
 import './index.scss';
+import WeAppy from './weappy';
 
 const Login = () => {
-  const { name } = useSelector((state) => state.global);
+  const weappySys = Taro.getEnv() === 'WEAPP';
+
   return (
-    <View className="login">
-      <Text>{name}</Text>
-      <Button type="primary" className="btn">
-        登陆
-      </Button>
+    <View class="onLand-container">
+      <View class="onLand-container-top">
+        <Image class="onLand-container-top-img" src={log} />
+      </View>
+      <View className="onLand-container-center">{weappySys && <WeAppy />}</View>
     </View>
   );
 };
-
 export default Login;
