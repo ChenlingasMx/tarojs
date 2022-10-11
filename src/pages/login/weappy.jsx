@@ -1,16 +1,41 @@
 import React from 'react';
+import Taro from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import { Button } from '@nutui/nutui-react-taro';
+import { useDispatch } from 'react-redux';
+import { useGetUserInfo } from '../../hooks';
 import './index.scss';
 
 const WeAppy = () => {
+  const dispatch = useDispatch();
+
+  const { get } = useGetUserInfo({
+    success: (response) => {
+      dispatch({ type: 'global/update', payload: { userInfo: response.userInfo || {} } });
+      Taro.setStorageSync('userInfo', response.userInfo);
+      login();
+    },
+  });
+
+  const login = () => {
+    Taro.showLoading({
+      title: '正在登录',
+      mask: true,
+    });
+    Taro.login({
+      success: (res) => {
+        if (res.errMsg === 'login:ok') {
+          Taro.hideLoading();
+          window.console.log('res', res);
+        }
+      },
+    });
+  };
+
   return (
     <View className="btn-container">
-      <Button type="primary" block>
-        手机号授权
-      </Button>
-      <Button type="primary" block style={{ marginTop: 20 }}>
-        用户信息授权
+      <Button type="primary" block openType="getUserInfo" onClick={() => get()}>
+        授权登录
       </Button>
       <View className="onload-footer">
         <View>
