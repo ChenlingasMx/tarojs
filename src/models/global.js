@@ -5,6 +5,7 @@ export default {
   state: {
     // 初始化数据
     name: '欢迎来到Taro-Ui',
+    userInfo: {},
   },
 
   effects: {
@@ -18,7 +19,7 @@ export default {
   },
 
   reducers: {
-    save(state, { payload }) {
+    update(state, { payload }) {
       return { ...state, ...payload };
     },
   },
