@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import { Button } from '@nutui/nutui-react-taro';
 import { useDispatch } from 'react-redux';
-import { useGetUserInfo } from '../../hooks';
+import { useGetUserInfo, useLogin } from '../../hooks';
 import './index.scss';
 
 const WeAppy = () => {
@@ -17,20 +17,11 @@ const WeAppy = () => {
     },
   });
 
-  const login = () => {
-    Taro.showLoading({
-      title: '正在登录',
-      mask: true,
-    });
-    Taro.login({
-      success: (res) => {
-        if (res.errMsg === 'login:ok') {
-          Taro.hideLoading();
-          window.console.log('res', res);
-        }
-      },
-    });
-  };
+  const { login } = useLogin({
+    success: (res) => {
+      window.console.log('res', res);
+    },
+  });
 
   return (
     <View className="btn-container">

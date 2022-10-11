@@ -31,3 +31,31 @@ export const useGetUserInfo = ({ success, fail }) => {
     loading,
   };
 };
+
+export const useLogin = ({ success, fail }) => {
+  const [loading, setLoading] = useState(false);
+
+  const login = () => {
+    Taro.showLoading({
+      title: '正在登录',
+      mask: true,
+    });
+    setLoading(true);
+    Taro.login({
+      success: (res) => {
+        if (res.errMsg === 'login:ok') {
+          Taro.hideLoading();
+          setLoading(false);
+          success(res);
+        }
+      },
+      fail: (error) => {
+        fail(error);
+      },
+    });
+  };
+  return {
+    login,
+    loading,
+  };
+};
