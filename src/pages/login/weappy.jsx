@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import { Button } from '@nutui/nutui-react-taro';
 import { useDispatch } from 'react-redux';
-import { useGetUserInfo, useLogin } from '../../hooks';
+import { useGetUserInfo, useLogin } from '@/hooks';
 import './index.scss';
 
 const WeAppy = () => {
@@ -19,7 +19,7 @@ const WeAppy = () => {
 
   const { login } = useLogin({
     success: (res) => {
-      window.console.log('res', res);
+      window.console.log('调用登录接口', res);
     },
   });
 

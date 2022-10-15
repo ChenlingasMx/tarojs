@@ -30,6 +30,7 @@ const config = {
     '@/components': path.resolve(__dirname, '..', 'src/components'),
     '@/utils': path.resolve(__dirname, '..', 'src/utils'),
     '@/assets': path.resolve(__dirname, '..', 'src/assets'),
+    '@/hooks': path.resolve(__dirname, '..', 'src/hooks'),
   },
   mini: {
     postcss: {
